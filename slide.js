@@ -11,8 +11,7 @@ function currentSlide(n) {
 
 function showSlides(n) {
   const slides = document.getElementsByClassName("slide-box");
-  const dots = document.getElementsByClassName("btn-manual");
-
+  
   if (n > slides.length) {
     slideIndex = 1;
   }
@@ -21,15 +20,18 @@ function showSlides(n) {
   }
 
   for (let i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-    dots[i].classList.remove("active");
+    slides[i].classList.remove("active"); // Remove a classe 'active'
   }
 
-  slides[slideIndex - 1].style.display = "block";
-  dots[slideIndex - 1].classList.add("active");
+  slides[slideIndex - 1].classList.add("active"); // Adiciona a classe 'active' ao slide atual
 
-  // Altera o slide a cada 5 segundos (5000 milissegundos)
+  // Altera o slide a cada 10 segundos (10000 milissegundos)
   setTimeout(() => {
     plusSlides(1);
-  }, 5000);
+  }, 15000);
+}
+
+const manualButtons = document.getElementsByClassName("btn-manual");
+for (let i = 0; i < manualButtons.length; i++) {
+  manualButtons[i].onclick = () => currentSlide(i + 1);
 }
